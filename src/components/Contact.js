@@ -2,11 +2,14 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <section className="bg-veryLightGreen text-darkGreen py-12 px-6">
-      <h2 className="text-4xl font-semibold text-center mb-12">Contact Me</h2>
+    <section 
+      id="contact"
+      className="bg-[#F3F4F6] text-[#333333] py-12 px-6"
+    >
+      <h2 className="text-4xl font-semibold text-center mb-12 text-[#1E3A8A]">Contact Me</h2>
       <div className="max-w-3xl mx-auto">
         <form
-          action="https://formspree.io/f/your-form-id" // Replace with your Formspree ID
+          action="https://formspree.io/f/mbljewyj" // Replace with your Formspree ID
           method="POST"
           className="space-y-6"
         >
@@ -19,7 +22,7 @@ const Contact = () => {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mediumGreen"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
             />
           </div>
           <div>
@@ -31,7 +34,7 @@ const Contact = () => {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mediumGreen"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
             />
           </div>
           <div>
@@ -43,12 +46,12 @@ const Contact = () => {
               name="message"
               rows="5"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mediumGreen"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-darkGreen text-offWhite font-semibold rounded-lg hover:bg-lightGreen transition-colors duration-300"
+            className="w-full py-3 bg-[#1E3A8A] text-offWhite font-semibold rounded-lg hover:bg-[#F59E0B] transition-colors duration-300"
           >
             Send Message
           </button>

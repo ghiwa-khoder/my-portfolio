@@ -1,32 +1,39 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import NavBar from './components/ NavBar';
-import Hero from './components/Hero';
-import About from './components/About';
+import CombinedSection from './components/CombinedSection';
 import Portfolio from './components/ Portfolio';
 import Contact from './components/Contact';
-import './index.css';
 import Footer from './components/Footer';
-import BackToTopButton from './components/BackToTopButton';
+import Skills from './components/Skills';  // Import Skills Section
 
 function App() {
   return (
-    <div>
+    <>
+      {/* Dynamic Title and Metadata */}
+      <Helmet>
+        <title>Ghiwa Khoder | Full Stack Developer Portfolio</title>
+        <meta
+          name="description"
+          content="Portfolio website of Ghiwa Khoder, showcasing projects and skills in React, Node.js, and web development."
+        />
+        <meta
+          name="keywords"
+          content="Ghiwa Khoder, Portfolio, Full Stack Developer, React Developer, Node.js Developer"
+        />
+        <meta name="author" content="Ghiwa Khoder" />
+      </Helmet>
+
+      {/* Main Components */}
       <NavBar />
-      <div id="hero">
-        <Hero />
-      </div>
-      <div id="about">
-        <About />
-      </div>
-      <div id="portfolio">
+      <main>
+        <CombinedSection />
+        <Skills/>
         <Portfolio />
-      </div>
-      <div id="contact">
         <Contact />
-        </div>
+      </main>
       <Footer />
-      <BackToTopButton />
-    </div>
+    </>
   );
 }
 

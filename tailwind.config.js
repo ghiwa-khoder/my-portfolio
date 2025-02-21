@@ -11,6 +11,15 @@ module.exports = {
         veryLightGreen: '#EAF4F4',
         offWhite: '#F6FFF8',
       },
+      perspective: {
+        '1000': '1000px',
+      },
+      transformStyle: {
+        'preserve-3d': 'preserve-3d',
+      },
+      backfaceVisibility: {
+        hidden: 'hidden',
+      },
     },
   },
   plugins: [],
