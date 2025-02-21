@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/my-portfolio/static/css/main.74ffde69.css",
-    "main.js": "/my-portfolio/static/js/main.3e695f32.js",
+    "main.css": "/my-portfolio/static/css/main.464ff95f.css",
+    "main.js": "/my-portfolio/static/js/main.05ca96ac.js",
     "static/js/488.21a3b654.chunk.js": "/my-portfolio/static/js/488.21a3b654.chunk.js",
-    "static/media/fixerfm.png": "/my-portfolio/static/media/fixerfm.08e6a879009e5bc368ba.png",
-    "static/media/thickness.png": "/my-portfolio/static/media/thickness.7ee7be1c7ceb190d31fb.png",
+    "static/media/thickness.png": "/my-portfolio/static/media/thickness.4a80e4b04229909236f1.png",
+    "static/media/fixerfm.png": "/my-portfolio/static/media/fixerfm.88610491cc4bf946267a.png",
+    "static/media/techtrum.png": "/my-portfolio/static/media/techtrum.95d29383707cb748608c.png",
+    "static/media/smartcat.png": "/my-portfolio/static/media/smartcat.0935c9b73f6cdb2ebaae.png",
     "static/media/vetinsight.png": "/my-portfolio/static/media/vetinsight.89c97dcc8fed205c6f18.png",
     "static/media/gandour.png": "/my-portfolio/static/media/gandour.a757e61ddad4062c63c3.png",
     "static/media/profile.jpg": "/my-portfolio/static/media/profile.96a06c1dc1f25f8ff908.jpg",
     "index.html": "/my-portfolio/index.html",
-    "main.74ffde69.css.map": "/my-portfolio/static/css/main.74ffde69.css.map",
-    "main.3e695f32.js.map": "/my-portfolio/static/js/main.3e695f32.js.map",
+    "main.464ff95f.css.map": "/my-portfolio/static/css/main.464ff95f.css.map",
+    "main.05ca96ac.js.map": "/my-portfolio/static/js/main.05ca96ac.js.map",
     "488.21a3b654.chunk.js.map": "/my-portfolio/static/js/488.21a3b654.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74ffde69.css",
-    "static/js/main.3e695f32.js"
+    "static/css/main.464ff95f.css",
+    "static/js/main.05ca96ac.js"
   ]
 }
