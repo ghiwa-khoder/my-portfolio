@@ -1,20 +1,29 @@
-import React from 'react';
+import React from "react";
 
 const Contact = () => {
   return (
-    <section 
+    <section
       id="contact"
-      className="bg-[#F3F4F6] text-[#333333] py-12 px-6"
+      className="bg-[#F8FAFC] text-[#333333] py-20 px-6"
     >
-      <h2 className="text-4xl font-semibold text-center mb-12 text-[#1E3A8A]">Contact Me</h2>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-4 text-[#1E3A8A]">
+          Let’s Connect
+        </h2>
+
+        <p className="text-gray-600 mb-12 max-w-2xl mx-auto leading-7">
+          Whether you are looking to design, build, or improve a website, I’d
+          be happy to discuss your project and how I can support it with clear,
+          user-friendly digital solutions.
+        </p>
+
         <form
-          action="https://formspree.io/f/mbljewyj" // Replace with your Formspree ID
+          action="https://formspree.io/f/mbljewyj"
           method="POST"
-          className="space-y-6"
+          className="space-y-6 text-left bg-white p-8 rounded-2xl shadow-sm border border-gray-200"
         >
           <div>
-            <label htmlFor="name" className="block text-lg font-medium mb-2">
+            <label htmlFor="name" className="block font-medium mb-2">
               Your Name
             </label>
             <input
@@ -22,11 +31,12 @@ const Contact = () => {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-[#1E3A8A]"
             />
           </div>
+
           <div>
-            <label htmlFor="email" className="block text-lg font-medium mb-2">
+            <label htmlFor="email" className="block font-medium mb-2">
               Your Email
             </label>
             <input
@@ -34,11 +44,12 @@ const Contact = () => {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-[#1E3A8A]"
             />
           </div>
+
           <div>
-            <label htmlFor="message" className="block text-lg font-medium mb-2">
+            <label htmlFor="message" className="block font-medium mb-2">
               Your Message
             </label>
             <textarea
@@ -46,16 +57,27 @@ const Contact = () => {
               name="message"
               rows="5"
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#22D3EE]"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-[#1E3A8A]"
             ></textarea>
           </div>
+
           <button
             type="submit"
-            className="w-full py-3 bg-[#1E3A8A] text-offWhite font-semibold rounded-lg hover:bg-[#F59E0B] transition-colors duration-300"
+            className="w-full py-3 bg-[#1E3A8A] text-white font-semibold rounded-lg hover:bg-[#163172] transition duration-300"
           >
             Send Message
           </button>
         </form>
+
+        <div className="mt-10 text-sm text-gray-600">
+          Or email me directly at{" "}
+          <a
+            href="mailto:ghiwa.khoder@hotmail.com"
+            className="text-[#1E3A8A] font-semibold hover:underline"
+          >
+            ghiwa.khoder@hotmail.com
+          </a>
+        </div>
       </div>
     </section>
   );

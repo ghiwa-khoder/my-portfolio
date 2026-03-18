@@ -27,9 +27,9 @@ function App() {
       {/* Main Components */}
       <NavBar />
       <main>
-        <CombinedSection />
-        <Skills/>
+        <CombinedSection />   
         <Portfolio />
+        <Skills/>
         <Contact />
       </main>
       <Footer />

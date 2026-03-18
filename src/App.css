@@ -1,104 +1,43 @@
-/* Global Styles */
+/* Global Reset */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #F3F4F6; /* Neutral light background */
-  color: #333; /* Dark text for contrast */
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* App Styling */
-.App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1E3A8A, #22D3EE); /* Dark blue to vibrant blue gradient */
+/* Better box model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Logo Styling */
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  transition: transform 0.3s ease-in-out;
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  display: block;
 }
 
-.App-logo:hover {
-  transform: rotate(15deg); /* Slight rotation on hover */
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-/* Header Styling */
-.App-header {
-  background-color: #1E3A8A; /* Dark blue background */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Link Styling */
-.App-link {
-  color: #22D3EE; /* Vibrant blue links */
+/* Remove default link underline unless styled elsewhere */
+a {
   text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  transition: color 0.3s ease;
 }
 
-.App-link:hover {
-  color: #F59E0B; /* Amber color on hover for links */
+/* Prevent fixed navbar from covering section headings */
+section {
+  scroll-margin-top: 90px;
 }
 
-/* Animation for Logo */
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .App-header {
-    font-size: calc(8px + 3vmin);
-    padding: 10px;
-  }
-
-  .App-logo {
-    height: 30vmin;
-  }
-
-  .App-link {
-    font-size: 16px;
-  }
-}
-
-/* Button Styling */
-button {
-  background-color: #22D3EE; /* Vibrant blue */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #F59E0B; /* Darken to amber on hover */
+/* Optional text selection styling */
+::selection {
+  background: #1e3a8a;
+  color: #ffffff;
 }

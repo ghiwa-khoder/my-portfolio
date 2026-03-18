@@ -1,106 +1,110 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBuilding } from "@fortawesome/free-solid-svg-icons"; 
-import "../components/portfolio.css"; // Import the CSS file
-
-// Importing images
-import gandourImage from "../assets/gandour.png"; 
-import vetinsightImage from "../assets/vetinsight.png"; 
-import fixerfmImage from "../assets/fixerfm.png"; 
-import thicknessImage from "../assets/thickness.png"; 
-import smartcatImage from "../assets/smartcat.png"; 
-import techtrumImage from "../assets/techtrum.png"; 
 
 const projects = [
   {
-    name: "Gandour Construction",
-    description: "A professional portfolio website showcasing construction services and projects.",
-    link: "https://gandour-construction.netlify.app/",
-    image: gandourImage,
-  },
-  {
-    name: "VetInsight Hub",
-    description: "An interactive resource hub for pet owners and veterinarians.",
-    link: "https://vetinsight-hub.netlify.app/",
-    image: vetinsightImage,
-  },
-  {
     name: "Fixer FM",
-    description: "A modern, user-friendly website for facility management services.",
-    link: "https://fixerfm.com/",
-    image: fixerfmImage,
-  },
-  {
-    name: "Samaaka",
-    description: "An innovative platform offering cutting-edge engineering and design solutions.",
-    link: "https://Samaaka.com.sa/",
-    image: thicknessImage,
-  },
-  {
-    name: "Real Estate Platform",
-    description: "A modern real estate platform built with React and Laravel. Coming soon!",
-    link: "#",
-    image: "",
-    isComingSoon: true,
-  },
-  {
-    name: "SmartCat",
-    description: "A comprehensive platform for translation and localization services.",
-    link: "https://smartcat.sa/",
-    image: smartcatImage,
+    url: "https://fixerfm.com/ar",
+    description:
+      "A service-oriented website designed to present information clearly, improve usability, and strengthen the client’s digital presence through a modern interface.",
+    focus: "Service Clarity & Usability",
   },
   {
     name: "Techtrum",
-    description: "A technology platform providing innovative solutions and services.",
-    link: "https://techtrum.net/",
-    image: techtrumImage,
+    url: "https://techtrum.net/en",
+    description:
+      "A corporate website structured to organize digital services in a clear and intuitive way, supporting easier navigation and a stronger user experience.",
+    focus: "Structured Service Presentation",
+  },
+  {
+    name: "SmartCat",
+    url: "https://smartcat.sa/en",
+    description:
+      "A bilingual platform designed to present translation and localization services through clear structure, accessible content, and user-friendly navigation.",
+    focus: "Bilingual Content Structure",
+  },
+  {
+    name: "Samaaka – Samaka",
+    url: "https://samaaka.com.sa/en/samaka",
+    description:
+      "A service page developed to communicate engineering services through a clean layout, strong visual structure, and responsive presentation.",
+    focus: "Clear Service Layout",
+  },
+  {
+    name: "Samaaka – Samaakat",
+    url: "https://samaaka.com.sa/en/samaakat",
+    description:
+      "A dedicated section designed to organize and present specialized services with improved clarity, consistency, and content flow.",
+    focus: "Content Organization",
   },
 ];
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="bg-[#F4F4F4] text-[#333333] py-16 px-8">
-      <h2 className="text-4xl font-bold text-center mb-12 text-[#1E3A8A]">My Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <div key={index} className="flip-card">
-            <div className="flip-card-inner">
-              
-              {/* Front Side */}
-              <div className="flip-card-front">
-                {project.isComingSoon ? (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200">
-                    <FontAwesomeIcon icon={faBuilding} className="text-[#1E3A8A] text-6xl mb-4" />
-                    <h3 className="text-lg font-bold text-[#1E3A8A]">Coming Soon</h3>
-                    <p className="text-sm text-gray-600">Real Estate Platform</p>
-                  </div>
-                ) : (
-                  <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
-                )}
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white text-center p-4">
-                  <h3 className="text-lg font-bold">{project.name}</h3>
-                </div>
+    <section id="portfolio" className="bg-[#F8FAFC] py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <h2 className="text-4xl font-bold text-[#1E3A8A] mb-5">
+            Selected Projects
+          </h2>
+
+          <p className="text-gray-600 leading-7">
+            A selection of websites and digital platforms I developed with a
+            focus on usability, responsive layouts, and clear content
+            presentation to support stronger digital communication.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <div
+              key={project.name}
+              className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+            >
+              <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 border-b border-gray-200">
+                <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span className="w-3 h-3 rounded-full bg-green-400"></span>
+                <span className="ml-3 text-xs text-gray-500 truncate">
+                  {project.url.replace(/^https?:\/\//, "")}
+                </span>
               </div>
 
-              {/* Back Side */}
-              <div className="flip-card-back">
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
+              <div className="overflow-hidden">
+                <img
+                  src={`https://api.microlink.io/?url=${encodeURIComponent(
+                    project.url
+                  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=900`}
+                  alt={project.name}
+                  className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
+                <span className="inline-block text-xs font-semibold bg-[#EEF6FF] text-[#1E3A8A] px-3 py-1 rounded-full mb-4 w-fit">
+                  {project.focus}
+                </span>
+
+                <h3 className="text-xl font-bold text-[#1E3A8A] mb-3 min-h-[56px]">
+                  {project.name}
+                </h3>
+
+                <p className="text-gray-600 text-sm leading-6 mb-6 flex-grow">
+                  {project.description}
+                </p>
+
                 <a
-                  href={project.link}
+                  href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-6 py-3 ${
-                    project.isComingSoon ? "bg-gray-400 cursor-not-allowed" : "bg-[#22D3EE] hover:bg-[#F59E0B]"
-                  } text-white font-semibold rounded-lg transition-all duration-300`}
+                  className="inline-flex items-center justify-center gap-2 bg-[#1E3A8A] hover:bg-[#163172] text-white text-sm font-semibold px-5 py-3 rounded-lg transition-colors duration-300"
                 >
-                  {project.isComingSoon ? "Coming Soon" : "View Project"}
+                  View Website
+                  <span aria-hidden="true">↗</span>
                 </a>
               </div>
-              
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
