@@ -12,10 +12,27 @@ const Contact = () => {
         </h2>
 
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto leading-7">
-          Whether you are looking to design, build, or improve a website, I’d
-          be happy to discuss your project and how I can support it with clear,
-          user-friendly digital solutions.
+        Whether you need a WordPress website, a business platform, a bilingual website,
+or improvements to an existing digital experience, I would be happy to discuss
+your project and explore how I can help bring it to life.
         </p>
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+  {[
+    "WordPress Development",
+    "Website Design",
+    "Responsive Design",
+    "Bilingual Websites",
+    "UI/UX",
+    "Website Optimization",
+  ].map((item) => (
+    <span
+      key={item}
+      className="px-3 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700"
+    >
+      {item}
+    </span>
+  ))}
+</div>
 
         <form
           action="https://formspree.io/f/mbljewyj"
@@ -65,7 +82,7 @@ const Contact = () => {
             type="submit"
             className="w-full py-3 bg-[#1E3A8A] text-white font-semibold rounded-lg hover:bg-[#163172] transition duration-300"
           >
-            Send Message
+Send Inquiry
           </button>
         </form>
 
@@ -78,6 +95,7 @@ const Contact = () => {
             ghiwa.khoder@hotmail.com
           </a>
         </div>
+        
       </div>
     </section>
   );

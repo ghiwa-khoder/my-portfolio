@@ -1,43 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
 /* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   background-color: #f8fafc;
   color: #333333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Better box model */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Make images responsive by default */
 img {
   max-width: 100%;
   display: block;
 }
 
-/* Remove default link underline unless styled elsewhere */
 a {
   text-decoration: none;
+  color: inherit;
 }
 
-/* Prevent fixed navbar from covering section headings */
 section {
   scroll-margin-top: 90px;
 }
 
-/* Optional text selection styling */
 ::selection {
   background: #1e3a8a;
   color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* Small reusable effects */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glow-blue {
+  box-shadow: 0 0 40px rgba(14, 165, 233, 0.18),
+    0 0 80px rgba(30, 58, 138, 0.08);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 60%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
