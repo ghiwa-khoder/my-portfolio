@@ -13,6 +13,7 @@ const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [onLight, setOnLight] = useState(true);
 
   const [indicator, setIndicator] = useState({
     left: 0,
@@ -24,13 +25,8 @@ const NavBar = () => {
   const navRef = useRef(null);
   const logoRef = useRef(null);
 
-  /* =====================================================
-     SMOOTH SCROLL
-  ===================================================== */
-
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
-
     if (!section) return;
 
     const navHeight =
@@ -51,19 +47,12 @@ const NavBar = () => {
     setMobileOpen(false);
   };
 
-  /* =====================================================
-     REDUCED MOTION
-  ===================================================== */
-
   useEffect(() => {
     const media = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     );
 
-    const update = () => {
-      setReducedMotion(media.matches);
-    };
-
+    const update = () => setReducedMotion(media.matches);
     update();
 
     media.addEventListener?.("change", update);
@@ -72,10 +61,6 @@ const NavBar = () => {
       media.removeEventListener?.("change", update);
     };
   }, []);
-
-  /* =====================================================
-     SCROLL PROGRESS + ACTIVE SECTION
-  ===================================================== */
 
   useEffect(() => {
     let frame = 0;
@@ -121,12 +106,13 @@ const NavBar = () => {
           .reverse()
           .find((item) => document.getElementById(item.id));
 
-        if (last) {
-          current = last.id;
-        }
+        if (last) current = last.id;
       }
 
       setActive(current);
+      setOnLight(
+        current === "combinedSection" || current === "skills"
+      );
     };
 
     const onScroll = () => {
@@ -140,26 +126,18 @@ const NavBar = () => {
     });
 
     window.addEventListener("resize", onScroll);
-
     update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
 
-      if (frame) {
-        window.cancelAnimationFrame(frame);
-      }
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
-  /* =====================================================
-     ANIMATED ACTIVE INDICATOR
-  ===================================================== */
-
   useEffect(() => {
     const container = linksRef.current;
-
     if (!container) return undefined;
 
     const update = () => {
@@ -183,7 +161,6 @@ const NavBar = () => {
     };
 
     update();
-
     window.addEventListener("resize", update);
 
     return () => {
@@ -191,17 +168,11 @@ const NavBar = () => {
     };
   }, [active]);
 
-  /* =====================================================
-     MOBILE MENU EVENTS
-  ===================================================== */
-
   useEffect(() => {
     if (!mobileOpen) return undefined;
 
     const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setMobileOpen(false);
-      }
+      if (event.key === "Escape") setMobileOpen(false);
     };
 
     const onPointerDown = (event) => {
@@ -224,10 +195,6 @@ const NavBar = () => {
       );
     };
   }, [mobileOpen]);
-
-  /* =====================================================
-     MAGNETIC LOGO
-  ===================================================== */
 
   const moveLogo = (event) => {
     if (
@@ -253,14 +220,9 @@ const NavBar = () => {
 
   const resetLogo = () => {
     if (logoRef.current) {
-      logoRef.current.style.transform =
-        "translate(0, 0)";
+      logoRef.current.style.transform = "translate(0, 0)";
     }
   };
-
-  /* =====================================================
-     RENDER
-  ===================================================== */
 
   return (
     <nav
@@ -272,21 +234,22 @@ const NavBar = () => {
         transition-[background-color,border-color,box-shadow]
         duration-500
         ${
-          scrolled
-            ? "border-[#C6F36B]/20 bg-[#081426]/85 shadow-[0_12px_36px_rgba(0,0,0,0.2)] backdrop-blur-xl"
-            : "border-white/10 bg-[#081426]/35 backdrop-blur-md"
+          onLight
+            ? scrolled
+              ? "border-[#081426]/10 bg-white/90 shadow-[0_12px_36px_rgba(8,20,38,0.08)] backdrop-blur-xl"
+              : "border-[#081426]/10 bg-white/75 backdrop-blur-md"
+            : scrolled
+            ? "border-[#C6F36B]/20 bg-[#081426]/90 shadow-[0_12px_36px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+            : "border-white/10 bg-[#081426]/80 backdrop-blur-md"
         }
       `}
     >
-      {/* ANIMATIONS */}
-
       <style>{`
         @keyframes navDrop {
           from {
             opacity: 0;
             transform: translateY(-12px);
           }
-
           to {
             opacity: 1;
             transform: translateY(0);
@@ -298,7 +261,6 @@ const NavBar = () => {
             opacity: 0;
             transform: translateY(-8px);
           }
-
           to {
             opacity: 1;
             transform: translateY(0);
@@ -325,8 +287,6 @@ const NavBar = () => {
         }
       `}</style>
 
-      {/* NAVBAR CONTENT */}
-
       <div
         className="
           mx-auto flex max-w-7xl
@@ -334,8 +294,6 @@ const NavBar = () => {
           gap-5 px-6 py-4
         "
       >
-        {/* INTERACTIVE LOGO */}
-
         <button
           ref={logoRef}
           type="button"
@@ -345,8 +303,7 @@ const NavBar = () => {
           aria-label="Ghiwa Khoder — back to home"
           className="
             nav-motion
-            inline-flex shrink-0
-            items-center
+            inline-flex shrink-0 items-center
             text-2xl font-black
             tracking-[-0.08em]
             transition-transform duration-300
@@ -357,22 +314,27 @@ const NavBar = () => {
             focus-visible:outline-[#C6F36B]
           "
         >
-          <span className="text-[#C6F36B]">G</span>
+          <span
+            className={
+              onLight ? "text-[#527B17]" : "text-[#C6F36B]"
+            }
+          >
+            G
+          </span>
 
-          <span className="text-white">
-            K
-            <span className="text-[#FF914D]">.</span>
+          <span
+            className={
+              onLight ? "text-[#081426]" : "text-white"
+            }
+          >
+            K<span className="text-[#FF914D]">.</span>
           </span>
         </button>
-
-        {/* DESKTOP NAVIGATION */}
 
         <div
           ref={linksRef}
           className="
-            relative hidden
-            items-center gap-8
-            md:flex
+            relative hidden items-center gap-8 md:flex
           "
         >
           {SECTIONS.map((item) => (
@@ -385,10 +347,8 @@ const NavBar = () => {
                 active === item.id ? "location" : undefined
               }
               className={`
-                nav-motion
-                relative z-10 pb-1
-                text-sm font-semibold
-                tracking-wide
+                nav-motion relative z-10 pb-1
+                text-sm font-semibold tracking-wide
                 transition-colors duration-300
                 focus-visible:rounded
                 focus-visible:outline
@@ -397,7 +357,11 @@ const NavBar = () => {
                 focus-visible:outline-[#C6F36B]
                 ${
                   active === item.id
-                    ? "text-[#C6F36B]"
+                    ? onLight
+                      ? "text-[#527B17]"
+                      : "text-[#C6F36B]"
+                    : onLight
+                    ? "text-[#081426]/65 hover:text-[#081426]"
                     : "text-white/75 hover:text-white"
                 }
               `}
@@ -406,17 +370,12 @@ const NavBar = () => {
             </button>
           ))}
 
-          {/* SLIDING ACTIVE LINE */}
-
           <span
             aria-hidden="true"
             className="
-              nav-motion
-              pointer-events-none
-              absolute -bottom-1
-              h-[2px]
-              rounded-full
-              bg-[#C6F36B]
+              nav-motion pointer-events-none
+              absolute -bottom-1 h-[2px]
+              rounded-full bg-[#C6F36B]
               transition-[left,width]
               duration-300 ease-out
             "
@@ -427,23 +386,17 @@ const NavBar = () => {
           />
         </div>
 
-        {/* DESKTOP CTA */}
-
         <button
           type="button"
           onClick={() => scrollToSection("contact")}
           className="
-            nav-motion
-            hidden min-h-11
-            items-center gap-3
-            rounded-full
-            bg-[#C6F36B]
-            px-6 py-2
-            text-sm font-bold
-            text-[#081426]
+            nav-motion hidden min-h-11
+            items-center gap-3 rounded-full
+            bg-[#C6F36B] px-6 py-2
+            text-sm font-bold text-[#081426]
             transition-all duration-300
             hover:-translate-y-0.5
-            hover:bg-white
+            hover:bg-[#E8F5CC]
             focus-visible:outline
             focus-visible:outline-2
             focus-visible:outline-offset-2
@@ -455,34 +408,32 @@ const NavBar = () => {
           <span aria-hidden="true">↗</span>
         </button>
 
-        {/* MOBILE MENU TOGGLE */}
-
         <button
           type="button"
           onClick={() => setMobileOpen((value) => !value)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="portfolio-mobile-menu"
-          className="
+          className={`
             inline-flex h-11 w-11
             items-center justify-center
-            rounded-full
-            border border-white/20
-            text-2xl text-[#C6F36B]
+            rounded-full border text-2xl
+            ${
+              onLight
+                ? "border-[#081426]/20 text-[#081426] hover:bg-[#081426]/5"
+                : "border-white/20 text-[#C6F36B] hover:bg-white/10"
+            }
             transition-colors
-            hover:bg-white/10
             focus-visible:outline
             focus-visible:outline-2
             focus-visible:outline-offset-2
             focus-visible:outline-[#C6F36B]
             md:hidden
-          "
+          `}
         >
           {mobileOpen ? "✕" : "☰"}
         </button>
       </div>
-
-      {/* ANIMATED MOBILE MENU */}
 
       {mobileOpen && (
         <div
@@ -511,9 +462,8 @@ const NavBar = () => {
               className={`
                 nav-mobile-link
                 min-h-12 rounded-xl
-                px-4 py-3
-                text-left text-sm
-                font-semibold
+                px-4 py-3 text-left
+                text-sm font-semibold
                 transition-colors
                 ${
                   active === item.id
@@ -523,7 +473,6 @@ const NavBar = () => {
               `}
             >
               {String(index + 1).padStart(2, "0")}
-
               <span className="ml-3">{item.label}</span>
             </button>
           ))}
@@ -532,14 +481,10 @@ const NavBar = () => {
             type="button"
             onClick={() => scrollToSection("contact")}
             className="
-              mt-3 min-h-12
-              rounded-full
-              bg-[#C6F36B]
-              px-6 py-3
-              text-sm font-bold
-              text-[#081426]
-              transition-colors
-              hover:bg-white
+              mt-3 min-h-12 rounded-full
+              bg-[#C6F36B] px-6 py-3
+              text-sm font-bold text-[#081426]
+              transition-colors hover:bg-white
             "
           >
             Let's Create ↗
@@ -547,22 +492,21 @@ const NavBar = () => {
         </div>
       )}
 
-      {/* SCROLL PROGRESS BAR */}
-
       <div
         className="
           pointer-events-none
           absolute inset-x-0 top-0
-          h-[2px] bg-white/5
+          h-[2px] bg-[#081426]/10
         "
         aria-hidden="true"
       >
         <div
-          className="
-            h-full bg-[#C6F36B]
+          className={`
+            h-full
             transition-[width]
             duration-150 ease-linear
-          "
+            ${onLight ? "bg-[#527B17]" : "bg-[#C6F36B]"}
+          `}
           style={{
             width: `${progress}%`,
           }}

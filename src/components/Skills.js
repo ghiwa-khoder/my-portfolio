@@ -19,13 +19,22 @@ import {
   faBootstrap,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { faCode } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCode,
+  faShieldHalved,
+  faServer,
+  faDatabase,
+  faCloudArrowUp,
+  faScrewdriverWrench,
+  faGaugeHigh,
+  faUserLock,
+} from "@fortawesome/free-solid-svg-icons";
 
 /* =====================================================
    COLORS
 ===================================================== */
 
-const LIME = "#C6F36B";
+const DARK_LIME = "#527B17";
 const ORANGE = "#FF914D";
 
 /* =====================================================
@@ -62,20 +71,79 @@ const groups = [
     title: "CMS & Tools",
     label: "03",
     description:
-      "Building, maintaining, and improving real-world websites.",
+      "Managing content, workflows, and production-ready website updates.",
     skills: [
       { name: "WordPress", icon: faWordpress },
       { name: "Git", icon: faGit },
+      { name: "Content Management", icon: faCode },
+    ],
+  },
+  {
+    title: "Security & Maintenance",
+    label: "04",
+    description:
+      "Keeping existing websites protected, updated, recoverable, and reliable.",
+    skills: [
+      {
+        name: "Website Security",
+        icon: faShieldHalved,
+      },
+      {
+        name: "Access Control",
+        icon: faUserLock,
+      },
+      {
+        name: "Backups & Recovery",
+        icon: faCloudArrowUp,
+      },
+      {
+        name: "Technical Maintenance",
+        icon: faScrewdriverWrench,
+      },
+      {
+        name: "Performance Optimization",
+        icon: faGaugeHigh,
+      },
+    ],
+  },
+  {
+    title: "Hosting & Infrastructure",
+    label: "05",
+    description:
+      "Hands-on administration of hosting environments, servers, and website data.",
+    skills: [
+      {
+        name: "Hosting & cPanel",
+        icon: faServer,
+      },
+      {
+        name: "VPS Administration",
+        icon: faServer,
+      },
+      {
+        name: "Database Management",
+        icon: faDatabase,
+      },
+      {
+        name: "Website Deployment",
+        icon: faCloudArrowUp,
+      },
     ],
   },
 ];
 
+/* =====================================================
+   STRENGTHS
+===================================================== */
+
 const strengths = [
   "Responsive Design",
   "WordPress Development",
-  "Clear Content Structure",
-  "Usability Focus",
-  "Intuitive Navigation",
+  "Website Security",
+  "Backup & Recovery",
+  "Hosting & VPS Management",
+  "Technical Troubleshooting",
+  "Performance Optimization",
   "Bilingual Websites",
 ];
 
@@ -202,7 +270,7 @@ function SkillCard({ skill, reducedMotion }) {
           overflow-hidden
           rounded-2xl
           border border-white/15
-          bg-[#081426]/80
+          bg-[#081426]/90
           p-5
           transition-[border-color,transform]
           duration-200
@@ -226,7 +294,8 @@ function SkillCard({ skill, reducedMotion }) {
             duration-300
           "
           style={{
-            opacity: hovered && !reducedMotion ? 1 : 0,
+            opacity:
+              hovered && !reducedMotion ? 1 : 0,
             background: `radial-gradient(
               180px circle at ${pointer.x}% ${pointer.y}%,
               rgba(198,243,107,0.15),
@@ -289,23 +358,42 @@ function SkillCard({ skill, reducedMotion }) {
    INTERACTIVE STRENGTH CHIP
 ===================================================== */
 
-function StrengthChip({ label, index, reducedMotion }) {
+function StrengthChip({
+  label,
+  index,
+  reducedMotion,
+}) {
   return (
     <motion.span
-      initial={reducedMotion ? false : { opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
+      initial={
+        reducedMotion
+          ? false
+          : {
+              opacity: 0,
+              y: 10,
+            }
+      }
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.5,
+      }}
       transition={{
         duration: 0.3,
-        delay: reducedMotion ? 0 : index * 0.05,
+        delay: reducedMotion
+          ? 0
+          : index * 0.05,
       }}
       whileHover={
         reducedMotion
           ? undefined
           : {
               y: -3,
-              borderColor: LIME,
-              color: LIME,
+              borderColor: DARK_LIME,
+              color: DARK_LIME,
             }
       }
       className="
@@ -313,12 +401,12 @@ function StrengthChip({ label, index, reducedMotion }) {
         cursor-default
         items-center
         rounded-full
-        border border-white/20
+        border border-[#081426]/20
         px-4 py-2
-        text-sm text-white/75
+        text-sm text-[#081426]/75
         transition-colors
-        hover:border-[#C6F36B]
-        hover:text-[#C6F36B]
+        hover:border-[#527B17]
+        hover:text-[#527B17]
       "
     >
       <span
@@ -349,14 +437,14 @@ export default function Skills() {
       id="skills"
       className="
         relative overflow-hidden
-        bg-[#081426]
+        bg-transparent
         px-6 py-24
-        text-white
+        text-[#081426]
         md:py-32
       "
     >
       {/* =====================================================
-          BACKGROUND
+          BACKGROUND DETAILS
       ===================================================== */}
 
       <div
@@ -369,12 +457,12 @@ export default function Skills() {
         style={{
           backgroundImage: `
             linear-gradient(
-              rgba(198,243,107,0.22) 1px,
+              rgba(8,20,38,0.22) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(198,243,107,0.22) 1px,
+              rgba(8,20,38,0.22) 1px,
               transparent 1px
             )
           `,
@@ -403,7 +491,7 @@ export default function Skills() {
           bottom-0
           h-80 w-80
           rounded-full
-          bg-[#C6F36B]/5
+          bg-[#C6F36B]/10
           blur-3xl
         "
       />
@@ -419,7 +507,7 @@ export default function Skills() {
             flex flex-wrap
             items-end justify-between
             gap-6
-            border-b border-white/15
+            border-b border-[#081426]/15
             pb-8
           "
         >
@@ -430,10 +518,10 @@ export default function Skills() {
                 text-xs font-bold
                 uppercase
                 tracking-[.28em]
-                text-[#C6F36B]
+                text-[#527B17]
               "
             >
-              02 / WHAT I DO
+              03 / WHAT I DO
             </p>
 
             <h2
@@ -445,8 +533,9 @@ export default function Skills() {
               "
             >
               CAPABILITIES
-
-              <span style={{ color: ORANGE }}>.</span>
+              <span style={{ color: ORANGE }}>
+                .
+              </span>
             </h2>
           </div>
 
@@ -454,12 +543,13 @@ export default function Skills() {
             className="
               max-w-md
               text-sm leading-7
-              text-white/60
+              text-[#081426]/65
             "
           >
-            From thoughtful design to functional development,
-            I build digital experiences that feel clear,
-            fast, and intuitive.
+            From creative development to secure website
+            operations, I build, maintain, and optimize
+            digital experiences designed to perform
+            reliably.
           </p>
         </div>
 
@@ -481,23 +571,28 @@ export default function Skills() {
           <div
             role="group"
             aria-label="Skill categories"
-            className="border-t border-white/15"
+            className="
+              border-t border-[#081426]/15
+            "
           >
             {groups.map((item, index) => {
-              const isActive = active === index;
+              const isActive =
+                active === index;
 
               return (
                 <button
                   key={item.title}
                   type="button"
-                  onClick={() => setActive(index)}
+                  onClick={() =>
+                    setActive(index)
+                  }
                   aria-pressed={isActive}
                   className={`
                     group relative
                     flex w-full
                     items-center gap-5
                     overflow-hidden
-                    border-b border-white/15
+                    border-b border-[#081426]/15
                     py-6 pl-5 pr-2
                     text-left
                     transition-colors
@@ -505,11 +600,11 @@ export default function Skills() {
                     focus-visible:outline
                     focus-visible:outline-2
                     focus-visible:outline-offset-[-2px]
-                    focus-visible:outline-[#C6F36B]
+                    focus-visible:outline-[#527B17]
                     ${
                       isActive
-                        ? "text-[#C6F36B]"
-                        : "text-white/60 hover:text-white"
+                        ? "text-[#527B17]"
+                        : "text-[#081426]/60 hover:text-[#081426]"
                     }
                   `}
                 >
@@ -531,7 +626,7 @@ export default function Skills() {
                         absolute bottom-0 left-0 top-0
                         w-[3px]
                         rounded-full
-                        bg-[#C6F36B]
+                        bg-[#527B17]
                       "
                       aria-hidden="true"
                     />
@@ -560,10 +655,13 @@ export default function Skills() {
                   <motion.span
                     aria-hidden="true"
                     animate={{
-                      rotate: isActive ? 45 : 0,
+                      rotate:
+                        isActive ? 45 : 0,
                     }}
                     transition={{
-                      duration: reducedMotion ? 0 : 0.2,
+                      duration: reducedMotion
+                        ? 0
+                        : 0.2,
                     }}
                     className="
                       text-xl
@@ -585,17 +683,22 @@ export default function Skills() {
             className="
               min-h-[350px]
               rounded-3xl
-              border border-white/15
-              bg-[#10233A]/70
+              border border-[#081426]/15
+              bg-white/75
               p-6
               md:p-9
             "
           >
-            <AnimatePresence mode="wait" initial={false}>
+            <AnimatePresence
+              mode="wait"
+              initial={false}
+            >
               <motion.div
                 key={active}
                 variants={
-                  reducedMotion ? undefined : panelVariants
+                  reducedMotion
+                    ? undefined
+                    : panelVariants
                 }
                 initial={
                   reducedMotion
@@ -645,7 +748,7 @@ export default function Skills() {
                   className="
                     mt-3 max-w-xl
                     text-sm leading-7
-                    text-white/60
+                    text-[#081426]/65
                   "
                 >
                   {group.description}
@@ -663,13 +766,17 @@ export default function Skills() {
                     sm:grid-cols-3
                   "
                 >
-                  {group.skills.map((skill) => (
-                    <SkillCard
-                      key={skill.name}
-                      skill={skill}
-                      reducedMotion={reducedMotion}
-                    />
-                  ))}
+                  {group.skills.map(
+                    (skill) => (
+                      <SkillCard
+                        key={skill.name}
+                        skill={skill}
+                        reducedMotion={
+                          reducedMotion
+                        }
+                      />
+                    )
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -683,7 +790,7 @@ export default function Skills() {
         <div
           className="
             mt-14
-            border-t border-white/15
+            border-t border-[#081426]/15
             pt-8
           "
         >
@@ -700,14 +807,18 @@ export default function Skills() {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            {strengths.map((item, index) => (
-              <StrengthChip
-                key={item}
-                label={item}
-                index={index}
-                reducedMotion={reducedMotion}
-              />
-            ))}
+            {strengths.map(
+              (item, index) => (
+                <StrengthChip
+                  key={item}
+                  label={item}
+                  index={index}
+                  reducedMotion={
+                    reducedMotion
+                  }
+                />
+              )
+            )}
           </div>
         </div>
       </div>

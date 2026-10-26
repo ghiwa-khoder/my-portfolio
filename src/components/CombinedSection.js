@@ -39,12 +39,14 @@ const SKILLS = [
 const LIME = "#C6F36B";
 const ORANGE = "#FF914D";
 const NAVY = "#081426";
+const OFF_WHITE = "#F8FAF7";
+const SLATE = "#536174";
+const DARK_LIME = "#527B17";
 
 /* =====================================================
    ORBITING RINGS
-   WEBGL IS ONLY USED FOR THE DECORATIONS
+   WEBGL DECORATIONS ONLY
 ===================================================== */
-
 function Orbit({
   radius,
   color,
@@ -56,35 +58,36 @@ function Orbit({
 }) {
   const mesh = useRef(null);
   const boost = useRef(1);
+  const angle = useRef(0);
 
   useFrame((_, delta) => {
-    if (!mesh.current || reducedMotion) {
-      return;
-    }
+    if (!mesh.current || reducedMotion) return;
+
+    const pointer = pointerRef.current;
 
     boost.current = THREE.MathUtils.damp(
       boost.current,
-      1 + hoverRef.current * 4,
+      1 + hoverRef.current * 5,
       3,
       delta
     );
 
-    mesh.current.rotation.z +=
-      speed * boost.current * delta;
+    angle.current += speed * boost.current * delta;
 
-    const pointer = pointerRef.current;
+    mesh.current.rotation.z =
+      angle.current + pointer.x * 0.3;
 
     mesh.current.rotation.x = THREE.MathUtils.damp(
       mesh.current.rotation.x,
-      tilt + pointer.y * -0.12,
-      3,
+      tilt + pointer.y * 0.45,
+      5,
       delta
     );
 
     mesh.current.rotation.y = THREE.MathUtils.damp(
       mesh.current.rotation.y,
-      pointer.x * 0.14,
-      3,
+      pointer.x * 0.55,
+      5,
       delta
     );
   });
@@ -106,7 +109,6 @@ function Orbit({
     </mesh>
   );
 }
-
 /* =====================================================
    PARTICLES
 ===================================================== */
@@ -123,13 +125,10 @@ function Particles({
 
     for (let i = 0; i < 150; i++) {
       const angle = i * 2.399963229728653;
-
       const radius = 1.95 + (i % 13) * 0.12;
 
       data[i * 3] = Math.cos(angle) * radius;
-
       data[i * 3 + 1] = Math.sin(angle) * radius;
-
       data[i * 3 + 2] = -0.45 + (i % 7) * 0.05;
     }
 
@@ -137,9 +136,7 @@ function Particles({
   }, []);
 
   useFrame((_, delta) => {
-    if (!points.current || reducedMotion) {
-      return;
-    }
+    if (!points.current || reducedMotion) return;
 
     const pointer = pointerRef.current;
 
@@ -172,9 +169,9 @@ function Particles({
 
       <pointsMaterial
         size={0.03}
-        color={LIME}
+        color={NAVY}
         transparent
-        opacity={0.6}
+        opacity={0.42}
         sizeAttenuation
         depthWrite={false}
       />
@@ -184,8 +181,7 @@ function Particles({
 
 /* =====================================================
    WEBGL CANVAS
-   ONLY RINGS AND PARTICLES
-   THE PHOTO IS NOT INSIDE THIS CANVAS
+   PHOTO IS OUTSIDE CANVAS
 ===================================================== */
 
 function PortraitCanvas(props) {
@@ -212,7 +208,7 @@ function PortraitCanvas(props) {
 
         <Orbit
           radius={1.98}
-          color={LIME}
+          color={NAVY}
           speed={0.18}
           tilt={0.12}
           {...props}
@@ -262,9 +258,7 @@ function useScramble(text, enabled) {
         text
           .split("")
           .map((character, index) => {
-            if (index < reveal) {
-              return character;
-            }
+            if (index < reveal) return character;
 
             return characters[
               Math.floor(
@@ -352,7 +346,7 @@ function Magnetic({
 }
 
 /* =====================================================
-   MAIN HERO
+   MAIN HERO — OFF-WHITE THEME
 ===================================================== */
 
 export default function CombinedSection() {
@@ -401,9 +395,7 @@ export default function CombinedSection() {
   ===================================================== */
 
   useEffect(() => {
-    if (reducedMotion) {
-      return undefined;
-    }
+    if (reducedMotion) return undefined;
 
     const interval = window.setInterval(() => {
       setActiveWord(
@@ -486,11 +478,11 @@ export default function CombinedSection() {
         min-h-screen flex-col
         overflow-hidden
         px-6 pb-10 pt-32
-        text-white
+        text-[#081426]
         md:pt-36
       "
       style={{
-        background: NAVY,
+        background: OFF_WHITE,
         "--mx": "70%",
         "--my": "35%",
       }}
@@ -565,7 +557,7 @@ export default function CombinedSection() {
         }
 
         .outline-text {
-          -webkit-text-stroke: 2px ${LIME};
+          -webkit-text-stroke: 2px ${NAVY};
           color: transparent;
         }
 
@@ -589,7 +581,7 @@ export default function CombinedSection() {
         "
         style={{
           backgroundImage:
-            "linear-gradient(rgba(198,243,107,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,243,107,.06) 1px,transparent 1px)",
+            "linear-gradient(rgba(8,20,38,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(8,20,38,.045) 1px,transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage:
             "linear-gradient(to bottom,black 30%,transparent)",
@@ -606,7 +598,7 @@ export default function CombinedSection() {
         "
         style={{
           background:
-            "radial-gradient(520px circle at var(--mx) var(--my), rgba(198,243,107,.10), transparent 65%)",
+            "radial-gradient(520px circle at var(--mx) var(--my), rgba(198,243,107,.13), transparent 65%)",
         }}
       />
 
@@ -649,9 +641,7 @@ export default function CombinedSection() {
           lg:grid-cols-[1.1fr_.9fr]
         "
       >
-        {/* =====================================================
-            LEFT CONTENT
-        ===================================================== */}
+        {/* LEFT CONTENT */}
 
         <div className="relative z-10">
           {/* BADGE */}
@@ -661,12 +651,12 @@ export default function CombinedSection() {
               className="
                 inline-flex items-center gap-3
                 rounded-full
-                border border-[#C6F36B]/40
-                bg-[#C6F36B]/5
+                border border-[#081426]/15
+                bg-[#C6F36B]/20
                 px-4 py-2
                 text-[11px] font-bold
                 uppercase tracking-[.18em]
-                text-[#C6F36B]
+                text-[#527B17]
               "
             >
               <span
@@ -681,7 +671,7 @@ export default function CombinedSection() {
               Creative Developer / Founder
             </span>
 
-            <span className="text-sm text-white/55">
+            <span className="text-sm text-[#536174]">
               Hi, I'm Ghiwa Khoder
             </span>
           </div>
@@ -719,14 +709,14 @@ export default function CombinedSection() {
               h-enter d2 mt-8
               max-w-lg
               text-base leading-8
-              text-white/70
+              text-[#536174]
               md:text-lg
             "
           >
             I'm a creative web developer and designer
             building responsive, user-focused digital
             experiences. I founded{" "}
-            <span className="font-semibold text-[#C6F36B]">
+            <span className="font-semibold text-[#527B17]">
               MASAR Interactive
             </span>
             , an emerging independent creative web studio
@@ -746,7 +736,7 @@ export default function CombinedSection() {
                 rounded-full
                 px-7 py-3
                 font-bold
-                hover:bg-white
+                hover:bg-[#E8F5CC]
               "
               style={{
                 background: LIME,
@@ -763,10 +753,10 @@ export default function CombinedSection() {
                 inline-flex min-h-12
                 items-center
                 rounded-full
-                border border-white/35
+                border border-[#081426]/25
                 px-7 py-3
                 font-semibold
-                text-white
+                text-[#081426]
                 hover:border-[#FF914D]
                 hover:text-[#FF914D]
               "
@@ -787,21 +777,40 @@ export default function CombinedSection() {
             w-full max-w-[520px]
           "
         >
-          <div
-            ref={portraitRef}
-            className="relative aspect-square w-full"
-            onPointerEnter={() => {
-              hoverRef.current = 1;
-            }}
-            onPointerLeave={() => {
-              hoverRef.current = 0;
+         <div
+  ref={portraitRef}
+  className="relative aspect-square w-full"
+  onPointerEnter={() => {
+    hoverRef.current = 1;
+  }}
+  onPointerMove={(event) => {
+    if (reducedMotion) return;
 
-              pointerRef.current = {
-                x: 0,
-                y: 0,
-              };
-            }}
-          >
+    const rect =
+      event.currentTarget.getBoundingClientRect();
+
+    const x =
+      ((event.clientX - rect.left) / rect.width) * 2 - 1;
+
+    const y =
+      -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+
+    pointerRef.current = {
+      x: THREE.MathUtils.clamp(x, -1, 1),
+      y: THREE.MathUtils.clamp(y, -1, 1),
+    };
+
+    hoverRef.current = 1;
+  }}
+  onPointerLeave={() => {
+    hoverRef.current = 0;
+
+    pointerRef.current = {
+      x: 0,
+      y: 0,
+    };
+  }}
+>
             {/* WEBGL DECORATIONS — BEHIND PHOTO */}
 
             <div
@@ -817,10 +826,7 @@ export default function CombinedSection() {
               />
             </div>
 
-            {/* ============================================
-                ORIGINAL PHOTO — NO COLOR EFFECTS
-                NO SHADER / NO FILTER / NO SHADOW
-            ============================================ */}
+            {/* ORIGINAL PHOTO — COMPLETELY UNEDITED */}
 
             <img
               src={profileImage}
@@ -935,7 +941,7 @@ export default function CombinedSection() {
               mt-8 text-center
               text-[11px] uppercase
               tracking-[.24em]
-              text-white/40
+              text-[#536174]
             "
           >
             Move your cursor · Explore the orbit
@@ -958,7 +964,7 @@ export default function CombinedSection() {
         <div
           className="
             grid items-center gap-6
-            border-y border-white/10
+            border-y border-[#081426]/10
             py-5
             md:grid-cols-[auto_1fr_auto]
           "
@@ -972,14 +978,14 @@ export default function CombinedSection() {
             className="
               group flex items-center gap-4
               rounded-2xl
-              border border-[#C6F36B]/25
-              bg-white/5
+              border border-[#081426]/10
+              bg-white/75
               px-5 py-3
               backdrop-blur-md
               transition duration-300
               hover:-translate-y-1
-              hover:border-[#C6F36B]/70
-              hover:bg-white/10
+              hover:border-[#527B17]/40
+              hover:bg-white
             "
           >
             <span
@@ -1001,7 +1007,7 @@ export default function CombinedSection() {
                   block text-[10px]
                   font-bold uppercase
                   tracking-[.2em]
-                  text-white/50
+                  text-[#536174]
                 "
               >
                 Founder & Creative Developer
@@ -1009,7 +1015,7 @@ export default function CombinedSection() {
 
               <span className="block text-base font-bold">
                 MASAR{" "}
-                <span className="text-[#C6F36B]">
+                <span className="text-[#527B17]">
                   Interactive
                 </span>{" "}
                 <span
@@ -1026,7 +1032,7 @@ export default function CombinedSection() {
                 </span>
               </span>
 
-              <span className="block text-xs text-white/50">
+              <span className="block text-xs text-[#536174]">
                 Independent creative studio · In development
               </span>
             </span>
@@ -1045,7 +1051,7 @@ export default function CombinedSection() {
                 gap-8 whitespace-nowrap
                 text-sm font-bold
                 uppercase tracking-[.25em]
-                text-white/35
+                text-[#536174]
               "
               aria-hidden="true"
             >
@@ -1060,7 +1066,7 @@ export default function CombinedSection() {
                       className="
                         flex items-center gap-8
                         transition
-                        hover:text-[#C6F36B]
+                        hover:text-[#527B17]
                       "
                     >
                       {skill}
@@ -1082,9 +1088,9 @@ export default function CombinedSection() {
             className="
               inline-flex items-center gap-4
               text-sm tracking-widest
-              text-white/60
+              text-[#536174]
               transition
-              hover:text-[#C6F36B]
+              hover:text-[#527B17]
             "
           >
             <span className="h-px w-10 bg-[#C6F36B]" />

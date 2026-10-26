@@ -1,17 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-/* GLOBAL COLORS */
+/* =========================================
+   COLORS
+========================================= */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+
   --navy: #081426;
   --navy-deep: #06101e;
   --lime: #c6f36b;
   --orange: #ff914d;
-  --text: #f7f9fc;
+  --off-white: #f8faf7;
+  --text: #081426;
 }
 
-/* GLOBAL RESET */
+/* =========================================
+   GLOBAL RESET
+========================================= */
 
 *,
 *::before,
@@ -21,21 +27,25 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--navy);
+  background: var(--off-white);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   font-family: "Inter", Arial, sans-serif;
-  background: var(--navy);
+  background: var(--off-white);
   color: var(--text);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   overflow-x: hidden;
 }
 
-/* ELEMENTS */
+/* =========================================
+   ELEMENTS
+========================================= */
 
 button,
 input,
@@ -68,14 +78,18 @@ section {
   scroll-margin-top: 90px;
 }
 
-/* TEXT SELECTION */
+/* =========================================
+   TEXT SELECTION
+========================================= */
 
 ::selection {
   background: var(--lime);
   color: var(--navy);
 }
 
-/* SCROLLBAR */
+/* =========================================
+   SCROLLBAR
+========================================= */
 
 ::-webkit-scrollbar {
   width: 7px;
@@ -94,7 +108,9 @@ section {
   background: var(--lime);
 }
 
-/* GLASS EFFECT */
+/* =========================================
+   GLASS EFFECT
+========================================= */
 
 .glass {
   background: rgba(255, 255, 255, 0.06);
@@ -103,7 +119,9 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* GLOW EFFECT */
+/* =========================================
+   GLOW EFFECT
+========================================= */
 
 .glow-blue {
   box-shadow:
@@ -111,7 +129,9 @@ section {
     0 0 80px rgba(255, 145, 77, 0.06);
 }
 
-/* GRADIENT TEXT */
+/* =========================================
+   GRADIENT TEXT
+========================================= */
 
 .gradient-text {
   background: linear-gradient(
@@ -126,14 +146,46 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
-/* ACCESSIBILITY */
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
 :focus-visible {
   outline: 2px solid var(--lime);
   outline-offset: 3px;
 }
 
-/* REDUCED MOTION */
+/* =========================================
+   ONE CONTINUOUS BACKGROUND
+========================================= */
+
+.alternating-sections {
+  position: relative;
+  isolation: isolate;
+
+  background-color: var(--off-white);
+
+  transition: none;
+}
+
+/* Sections no longer have separate backgrounds */
+
+.alternating-sections > section {
+  position: relative;
+
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Remove the previous gradient overlays */
+
+.alternating-sections > section::after {
+  content: none !important;
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   html {

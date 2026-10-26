@@ -8,19 +8,20 @@ const projects = [
   {
     name: "MASAR Interactive",
     url: "https://masar-interactive.vercel.app/",
-    role: "Founder & Creative Developer",
+    role: "Founder & CEO | Creative Developer",
     focus: "Independent Creative Web Studio",
     description:
-      "An emerging independent creative web studio founded to explore and build distinctive digital experiences. The project focuses on interactive website development, creative visual storytelling, and modern frontend technologies.",
+      "An independent creative web studio founded to explore and build distinctive digital experiences. The project focuses on interactive website development, creative visual storytelling, and modern frontend technologies.",
     responsibilities: [
-      "Founded and developed the creative direction of MASAR Interactive",
+      "Founded MASAR Interactive and established its creative direction",
       "Developed the studio's visual identity and digital concept",
       "Designed and developed an interactive studio website",
-      "Explored creative website concepts and interactive user experiences",
-      "Building a portfolio of original web design and development projects",
+      "Implemented responsive layouts and interactive experiences",
+      "Managed website deployment and ongoing development",
+      "Developed original website concepts and portfolio projects",
     ],
     impact:
-      "Established the initial brand identity and digital presence of an independent creative studio, with ongoing development of its project portfolio.",
+      "Established the brand identity and digital presence of an independent creative web studio, creating a foundation for future client projects and interactive digital experiences.",
     stack: [
       "React",
       "Next.js",
@@ -41,10 +42,10 @@ const projects = [
       "Designed and customized responsive website pages",
       "Structured service content for better usability",
       "Improved website performance and user experience",
-      "Supported deployment and content updates",
+      "Supported website deployment, content updates, and ongoing maintenance",
     ],
     impact:
-      "Enhanced service visibility and improved user navigation through structured layout and responsive design.",
+      "Enhanced service visibility and improved user navigation through structured layouts and responsive design.",
     stack: [
       "WordPress",
       "UI/UX",
@@ -61,7 +62,7 @@ const projects = [
       "A corporate WordPress website developed to organize digital and professional services in a clear, structured, and intuitive way, supporting easier navigation and a stronger user experience.",
     responsibilities: [
       "Customized WordPress pages and layouts",
-      "Improved navigation structure and UX flow",
+      "Improved navigation structure and user experience",
       "Developed and customized service and content pages",
       "Ensured cross-device responsiveness",
     ],
@@ -77,23 +78,28 @@ const projects = [
   {
     name: "SmartCat",
     url: "https://smartcat.sa/en",
-    role: "Web Designer & Developer",
-    focus: "Bilingual Service Website",
+    role: "Full Stack Developer",
+    focus: "Bilingual Website & Technical Operations",
     description:
-      "A bilingual WordPress platform developed to present translation and localization services through clear content structure, accessible layout, and user-friendly navigation.",
+      "A bilingual WordPress website developed and maintained to present translation and localization services. My work combined website development, content administration, and ongoing technical support.",
     responsibilities: [
-      "Built bilingual Arabic and English content structure",
-      "Managed WordPress content and localization workflows",
-      "Improved readability and content accessibility",
-      "Ensured responsive behavior across devices",
+      "Built and maintained bilingual Arabic and English website content",
+      "Managed WordPress administration and content updates",
+      "Supported website hosting and technical maintenance",
+      "Managed hosting accounts and server-related operations",
+      "Worked with databases, backups, and website data",
+      "Supported security improvements and technical troubleshooting",
+      "Ensured responsive functionality across devices",
     ],
     impact:
-      "Improved multilingual usability and made service information easier to access for different audiences.",
+      "Supported the website's multilingual usability, technical maintenance, and continued operation while improving access to service information.",
     stack: [
       "WordPress",
-      "Bilingual UI",
-      "SEO Basics",
-      "Usability",
+      "PHP",
+      "Hosting",
+      "Databases",
+      "Website Maintenance",
+      "Security",
     ],
   },
   {
@@ -171,6 +177,7 @@ const projects = [
 const Portfolio = () => {
   const [selected, setSelected] = useState(0);
   const [imageError, setImageError] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const previewRef = useRef(null);
 
@@ -183,8 +190,6 @@ const Portfolio = () => {
     x: 50,
     y: 50,
   });
-
-  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const project = projects[selected];
 
@@ -200,10 +205,14 @@ const Portfolio = () => {
       return;
     }
 
-    const rect = previewRef.current.getBoundingClientRect();
+    const rect =
+      previewRef.current.getBoundingClientRect();
 
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
+    const x =
+      (event.clientX - rect.left) / rect.width;
+
+    const y =
+      (event.clientY - rect.top) / rect.height;
 
     setTilt({
       x: (0.5 - y) * 7,
@@ -240,7 +249,8 @@ const Portfolio = () => {
 
   const previous = () => {
     choose(
-      (selected - 1 + projects.length) % projects.length
+      (selected - 1 + projects.length) %
+        projects.length
     );
   };
 
@@ -249,7 +259,7 @@ const Portfolio = () => {
       id="portfolio"
       className="
         relative overflow-hidden
-        bg-[#081426]
+        bg-transparent
         px-6 py-24
         text-white
         md:py-32
@@ -346,7 +356,6 @@ const Portfolio = () => {
               "
             >
               PROJECTS
-
               <span className="text-[#FF914D]">
                 .
               </span>
@@ -360,9 +369,10 @@ const Portfolio = () => {
               text-white/60
             "
           >
-            A selection of websites, digital interfaces,
-            and frontend experiences built around clarity,
-            usability, and purposeful design.
+            Selected websites and digital experiences,
+            with a closer look at my role, technical
+            contributions, and the work behind each
+            project.
           </p>
         </div>
 
@@ -402,7 +412,6 @@ const Portfolio = () => {
                     focus-visible:outline
                     focus-visible:outline-2
                     focus-visible:outline-[#C6F36B]
-
                     ${
                       selected === index
                         ? "text-[#C6F36B]"
@@ -418,7 +427,6 @@ const Portfolio = () => {
                       h-8 w-0.5 shrink-0
                       rounded-full
                       transition-colors
-
                       ${
                         selected === index
                           ? "bg-[#C6F36B]"
@@ -430,7 +438,10 @@ const Portfolio = () => {
                   {/* PROJECT NUMBER */}
 
                   <span className="text-xs font-bold tabular-nums">
-                    {String(index + 1).padStart(2, "0")}
+                    {String(index + 1).padStart(
+                      2,
+                      "0"
+                    )}
                   </span>
 
                   {/* PROJECT NAME */}
@@ -452,7 +463,6 @@ const Portfolio = () => {
                     className={`
                       text-xl
                       transition-transform
-
                       ${
                         selected === index
                           ? "translate-x-1 text-[#FF914D]"
@@ -482,12 +492,18 @@ const Portfolio = () => {
 
               <span className="font-mono text-sm text-white/65">
                 <span className="text-[#C6F36B]">
-                  {String(selected + 1).padStart(2, "0")}
+                  {String(selected + 1).padStart(
+                    2,
+                    "0"
+                  )}
                 </span>
 
                 {" / "}
 
-                {String(projects.length).padStart(2, "0")}
+                {String(projects.length).padStart(
+                  2,
+                  "0"
+                )}
               </span>
 
               {/* PROGRESS BAR */}
@@ -499,7 +515,9 @@ const Portfolio = () => {
                   rounded-full
                   bg-white/10
                 "
-                aria-label={`Project ${selected + 1} of ${projects.length}`}
+                aria-label={`Project ${
+                  selected + 1
+                } of ${projects.length}`}
               >
                 <div
                   className="
@@ -509,7 +527,9 @@ const Portfolio = () => {
                   "
                   style={{
                     width: `${
-                      ((selected + 1) / projects.length) * 100
+                      ((selected + 1) /
+                        projects.length) *
+                      100
                     }%`,
                   }}
                 />
@@ -609,7 +629,10 @@ const Portfolio = () => {
                   "
                 >
                   {project.url !== "#"
-                    ? project.url.replace(/^https?:\/\//, "")
+                    ? project.url.replace(
+                        /^https?:\/\//,
+                        ""
+                      )
                     : "frontend mentorship / training"}
                 </span>
               </div>
@@ -649,14 +672,17 @@ const Portfolio = () => {
 
                 {/* WEBSITE SCREENSHOT */}
 
-                {project.url !== "#" && !imageError ? (
+                {project.url !== "#" &&
+                !imageError ? (
                   <img
                     src={`https://api.microlink.io/?url=${encodeURIComponent(
                       project.url
                     )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=900`}
                     alt={`${project.name} website preview`}
                     loading="lazy"
-                    onError={() => setImageError(true)}
+                    onError={() =>
+                      setImageError(true)
+                    }
                     className="
                       h-full w-full
                       object-cover object-top
@@ -729,6 +755,8 @@ const Portfolio = () => {
               "
             >
               <div>
+                {/* YOUR ROLE */}
+
                 <p
                   className="
                     mb-2
@@ -740,6 +768,8 @@ const Portfolio = () => {
                 >
                   {project.role}
                 </p>
+
+                {/* PROJECT NAME */}
 
                 <h3
                   className="
@@ -811,13 +841,16 @@ const Portfolio = () => {
             </div>
 
             {/* =====================================================
-                EXPANDABLE DETAILS
+                EXPANDABLE PROJECT CONTRIBUTIONS
             ===================================================== */}
 
             <details
+              key={project.name}
               open={detailsOpen}
               onToggle={(event) =>
-                setDetailsOpen(event.currentTarget.open)
+                setDetailsOpen(
+                  event.currentTarget.open
+                )
               }
               className="
                 mt-7
@@ -832,9 +865,22 @@ const Portfolio = () => {
                   text-[#C6F36B]
                 "
               >
-                Project Details + Impact{" "}
+                My Contribution & Impact{" "}
                 {detailsOpen ? "−" : "+"}
               </summary>
+
+              {/* RESPONSIBILITIES HEADING */}
+
+              <p
+                className="
+                  mt-5
+                  text-xs font-bold
+                  uppercase tracking-[.2em]
+                  text-[#FF914D]
+                "
+              >
+                What I worked on
+              </p>
 
               {/* RESPONSIBILITIES */}
 
@@ -847,18 +893,20 @@ const Portfolio = () => {
                   text-white/70
                 "
               >
-                {project.responsibilities.map((item) => (
-                  <li key={item}>
-                    {item}
-                  </li>
-                ))}
+                {project.responsibilities.map(
+                  (item) => (
+                    <li key={item}>
+                      {item}
+                    </li>
+                  )
+                )}
               </ul>
 
               {/* IMPACT */}
 
               <p
                 className="
-                  mt-4
+                  mt-5
                   text-sm leading-6
                   text-white/80
                 "
