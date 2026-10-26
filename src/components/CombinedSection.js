@@ -40,8 +40,7 @@ const LIME = "#C6F36B";
 const ORANGE = "#FF914D";
 const NAVY = "#081426";
 const OFF_WHITE = "#F8FAF7";
-const SLATE = "#536174";
-const DARK_LIME = "#527B17";
+
 
 /* =====================================================
    ORBITING RINGS
